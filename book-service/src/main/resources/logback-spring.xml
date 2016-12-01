@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+	<springProfile name="elk">
+		<appender name="stash" class="net.logstash.logback.appender.LogstashSocketAppender">
+	        <host>logstash</host>
+	        <port>4560</port>
+	        <customFields>{"appname":"book-service"}</customFields>
+	    </appender>
+	    <root level="all">
+	        <appender-ref ref="stash" />
+	    </root>
+	</springProfile>
+    
+</configuration>
